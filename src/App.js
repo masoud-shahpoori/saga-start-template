@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import withLoading from "./components/withLoading/withLoading";
 import Product from "./page/product/product";
 import productReducer from "./redux/reducers/product/productreducer";
+import ErrorBoundary from "./components/errorBoundry/ErrorBoundry";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,30 +17,31 @@ function App() {
   });
   const handleAdd = () => {
     dispatch({ type: "HI" });
-    // console.log(productReducer)
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Editsdfvdsg <code></code> and save to reload.
-        </p>
-        <button onClick={handleAdd}>add</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Product
-          loading={productReducer.loading}
-          data={productReducer.product}
-        />
-      </header>
-    </div>
+    <ErrorBoundary>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>
+            Editsdfvdsg <code></code> and save to reload.
+          </p>
+          <button onClick={handleAdd}>add</button>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          <Product
+            loading={productReducer.loading}
+            data={productReducer.product}
+          />
+        </header>
+      </div>
+    </ErrorBoundary>
   );
 }
 const mapStateToProps = (state) => ({
